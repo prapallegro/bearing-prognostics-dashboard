@@ -1,7 +1,7 @@
 # Bearing Prognostics Dashboard
 
 [![Tests](https://github.com/prapallegro/bearing-prognostics-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/prapallegro/bearing-prognostics-dashboard/actions)
-
+[![Project Board](https://img.shields.io/badge/Project-Roadmap-blue)](https://github.com/prapallegro/bearing-prognostics-dashboard/projects/1)
 
 Interactive dashboard for bearing health monitoring and degradation analysis. Built with [Plotly Dash](https://dash.plotly.com/).
 
@@ -23,19 +23,17 @@ pip install -r requirements.txt
 
 # Run the development server
 python app.py
-
-Open http://localhost:8050 in your browser.
-
+```
 ## Features (v0.1.0)
 
-    Health Indicator — PCA-based scalar degradation score from vibration features
-    Threshold Monitoring — Interactive failure-threshold slider with visual annotation
-    Interactive Plots — Plotly figures with hover tooltips
-    Synthetic Demo Data — Built-in generator for out-of-the-box testing
+- **Health Indicator** — PCA-based scalar degradation score from vibration features
+- **Threshold Monitoring** — Interactive failure-threshold slider with visual annotation
+- **Interactive Plots** — Plotly figures with hover tooltips
+- **Synthetic Demo Data** — Built-in generator for out-of-the-box testing
 
 ## Architecture
-plain
 
+```text
 bearing-prognostics-dashboard/
 ├── app.py              # Application entry point
 ├── backend/            # Data-processing pipelines
@@ -56,26 +54,31 @@ bearing-prognostics-dashboard/
 ├── CONTRIBUTING.md
 └── requirements.txt
 
+```
+
 ## Requirements
 
     Python 3.9+
     See requirements.txt for package dependencies
 
 ## Testing
-bash
 
+```bash
 pytest tests/ -v
+```
 
 ## Citation
-If you use this software in your research, please cite:
-bibtex
 
+If you use this software in your research, please cite:
+
+```bibtex
 @software{bearing_prognostics_2026,
   author = {Allegro, Paula R. P.},
   title = {Bearing Prognostics Dashboard},
   year = {2026},
   url = {https://github.com/prapallegro/bearing-prognostics-dashboard}
 }
+```
 
 ## License
 MIT License — see LICENSE.
