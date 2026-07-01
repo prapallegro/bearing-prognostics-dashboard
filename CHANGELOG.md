@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [0.1.0-alpha] - 2026-07-01
+
+### Added
+- Initial public release of the Bearing Prognostics Dashboard.
+- Functional PCA-based health indicator with interactive threshold slider.
+- Synthetic data generator for out-of-the-box testing.
+- CI pipeline (GitHub Actions) with automated pytest suite.
+- Project skeleton, contribution guidelines, and issue templates.
+
+### Fixed
+- README formatting issues (#9).
+- Discussions link in issue templates (#10).
+
+### Known Limitations
+- Uses synthetic demo data only (real loaders planned for v0.2.0).
+- Light theme only (dark mode planned for future releases).
+- No RUL prediction yet (planned for future releases).
+
 ## [Unreleased]
 
 ### Planned
