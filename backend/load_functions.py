@@ -48,7 +48,29 @@ def load_xjtu_sy_data(file_path, filecount, metadata_only=True):
     return result
 
 # ----------------------------------------------------------------------
-# Generic entry point (initial: WT-HSS and XJTU-SY)
+# Loader for PHM‑2012 (CSV)
+# ----------------------------------------------------------------------
+def load_phm_2012_data(file_path, filecount, metadata_only=False):
+    sampling_frequency = 25600
+    start_time = datetime(2012, 1, 27, 0, 0, 0)
+    dt = start_time + timedelta(seconds=filecount * 6)
+    time_in_days = filecount * 6 / 86400.0
+
+    result = {
+        'datetime': dt,
+        'sampling_frequency': sampling_frequency,
+        'file_index': filecount,
+        'time_in_days': time_in_days,
+    }
+
+    # For now, only metadata (full signal loading postponed)
+    # TODO: Enable full vibration loading in v0.2.0 when vibration plot tab is ready.
+
+    return result
+
+
+# ----------------------------------------------------------------------
+# Generic entry point (WT-HSS, XJTU-SY, PHM-2012)
 # ----------------------------------------------------------------------
 def load_data(datafile, dataset_type, filecount, metadata_only=True, **kwargs):
     """
@@ -58,5 +80,7 @@ def load_data(datafile, dataset_type, filecount, metadata_only=True, **kwargs):
         return load_wt_hss_data(datafile, filecount, metadata_only=metadata_only)
     elif dataset_type == 'XJTU-SY':
         return load_xjtu_sy_data(datafile, filecount, metadata_only=metadata_only)
+    elif dataset_type == 'PHM-2012':
+        return load_phm_2012_data(datafile, filecount, metadata_only=metadata_only)
     else:
         raise ValueError(f"Dataset type {dataset_type} not yet supported")
