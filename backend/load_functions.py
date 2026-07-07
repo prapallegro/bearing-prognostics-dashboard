@@ -70,17 +70,22 @@ def load_phm_2012_data(file_path, filecount, metadata_only=False):
 
 
 # ----------------------------------------------------------------------
-# Generic entry point (WT-HSS, XJTU-SY, PHM-2012)
+# Registry of dataset loaders
+# ----------------------------------------------------------------------
+DATASET_LOADERS = {
+    'WT-HSS': load_wt_hss_data,
+    'XJTU-SY': load_xjtu_sy_data,
+    'PHM-2012': load_phm_2012_data,
+}
+
+# ----------------------------------------------------------------------
+# Generic entry point using registry
 # ----------------------------------------------------------------------
 def load_data(datafile, dataset_type, filecount, metadata_only=True, **kwargs):
     """
-    Main entry point: routes to the appropriate loader based on dataset_type.
+    Main entry point: looks up the appropriate loader in DATASET_LOADERS.
     """
-    if dataset_type == 'WT-HSS':
-        return load_wt_hss_data(datafile, filecount, metadata_only=metadata_only)
-    elif dataset_type == 'XJTU-SY':
-        return load_xjtu_sy_data(datafile, filecount, metadata_only=metadata_only)
-    elif dataset_type == 'PHM-2012':
-        return load_phm_2012_data(datafile, filecount, metadata_only=metadata_only)
-    else:
-        raise ValueError(f"Dataset type {dataset_type} not yet supported")
+    loader = DATASET_LOADERS.get(dataset_type)
+    if loader is None:
+        raise KeyError(f"Dataset type '{dataset_type}' not registered. Available: {list(DATASET_LOADERS.keys())}")
+    return loader(datafile, filecount, metadata_only=metadata_only, **kwargs)
